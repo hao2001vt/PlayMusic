@@ -1,0 +1,199 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+h1,h2,h3,h4,p,ul{
+    margin: 0;
+    padding: 0;
+}
+.app{
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background:linear-gradient(to top ,rgba(156, 136, 255,0.4),rgba(45, 52, 54,0.9),rgba(108, 92, 231,0.7),rgba(9, 132, 227,0.6),rgba(0, 206, 201,0.6)) ,  rgba(129, 236, 236,0.6)  url('../img/background.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.wrapper{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin:auto;
+}
+.wrapper img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    animation: animationImg linear 5s infinite;
+    object-fit: cover;
+    transform-origin: center;
+}
+@keyframes animationImg {
+    from {
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.title-song{
+    color: white;
+    text-transform: uppercase;
+    margin: 30px 0 25px 0 ;
+}
+.progress{
+    width: 500px;
+    height: 6px;
+    background-color: white;
+    border-radius: 5px;
+}
+.time{
+    color: white;
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+.btn{
+    color: white;
+    margin: 10px 10px;
+    width: 55px;
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn.prev , .btn.next{
+    background-color: #FF5858;
+}
+.btn.play, .btn.pause{
+    background-color: #CC2E5D;
+    width: 65px;
+    height: 35px;
+   
+}
+.pause{
+    display: none;
+}
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* Menu */
+.control-menu{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.control-menu i{
+    font-size: 2.5rem;
+}
+.control-menu:hover{
+    background-color:#CC2E5D ;
+    border-radius: 50%;
+    color: white;
+}
+.menu{
+    width: 300px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-300px);
+    z-index: 2;
+    transition: 0.5s linear;
+}
+.menu-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 14px 0;
+    background-color: #CC2E5D;
+    
+}
+.menu-header h2{
+    font-size: 2.2rem;
+    margin: 0px 10px;
+}
+.menu-header i{
+    color: white;
+    font-size: 3rem;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+.list-music{
+    width: 100%;
+    color: white;
+}
+.item-music{
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.item-music:hover{
+    background-color: tomato;
+}
+.item-music  img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin:0 10px;
+}
+.music-title {
+    font-size: 1.8rem;
+    line-height: 30px;
+    text-align: center;
+    margin-right: 10px;
+}
+.menu.show{
+    transform: translateX(0);
+}
+.progress-bar{
+    width: 55%;
+    height:8px;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.wrapper-progress{
+    width: 100vw;
+    height: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.progress{
+    width: 0px;
+    height:8px;
+    background-color: red;
+    border-top-left-radius: 5px ;
+    border-bottom-left-radius: 5px ;
+    transition: width 0.3s linear;
+}
