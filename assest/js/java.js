@@ -1,18 +1,4 @@
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyArFmONBNbHZuywPmPrUL6Efq0YiOpMSpI",
-        authDomain: "vuejs-eac68.firebaseapp.com",
-        databaseURL: "https://vuejs-eac68.firebaseio.com",
-        projectId: "vuejs-eac68",
-        storageBucket: "vuejs-eac68.appspot.com",
-        messagingSenderId: "229570562521",
-        appId: "1:229570562521:web:26fae4c5982b83c60931c8",
-        measurementId: "G-PG5GZWSSH1"
-    };
-    
-    firebase.initializeApp(firebaseConfig);
-    
-    
     const openMenu  = document.querySelector('.control-menu');
     const closeMenu = document.querySelector('.close');
     const menu      = document.querySelector('.menu');
@@ -26,6 +12,7 @@
     const progressBar = document.querySelector('.progress-bar');
     const progress = document.querySelector('.progress');
     const title    = document.querySelector('.title-song');
+    const img      = document.querySelector('.img-main');
     let currentIndex = 0
     openMenu.addEventListener('click', () =>{
         menu.classList.add('show')
@@ -33,7 +20,7 @@
     closeMenu.addEventListener('click', () =>{
         menu.classList.remove('show')
     })
-    const songs =[
+    let songs =[
         {
             src:'/assest/audio/tinh.mp3',
             title:'Tình sầu thiên thu muôn nối-X2X'
@@ -50,37 +37,38 @@
     const player = new Audio();
     const app ={
         load :() => {
-            app.getData()
-            listMusic.innerHTML=''
-            for(let i=0 ; i<songs.length ;i++){
-                const li = document.createElement('li');
-                li.classList.add('item-music');
-                li.setAttribute('onClick',`getItem(${i})`);
-                const img = document.createElement('img');
-                img.setAttribute('src', '/assest/img/background.jpg');
-                const p = document.createElement('p');
-                p.classList.add('music-title');
-                p.innerHTML= songs[i].title;
-                li.appendChild(img);
-                li.appendChild(p);
-                listMusic.appendChild(li)
-            }
-        },
-        getData(){
-            console.log(firebase);
-            
             firebase.database()
-            .ref('test')
-            .push()
-            .set({
-                name:"Nguyễn Chí Hào"
+            .ref('users')
+            .once('value')
+            .then((snap) =>{
+                songs = []
+                snap.forEach((item) =>{
+                    songs.push(item.val())
+                })
+                
             })
-            
+            .then(() =>{
+                listMusic.innerHTML=''
+                for(let i=0 ; i<songs.length ;i++){
+                    const li = document.createElement('li');
+                    li.classList.add('item-music');
+                    li.setAttribute('onClick',`getItem(${i})`);
+                    const img = document.createElement('img');
+                    img.setAttribute('src', `${songs[i].img}`);
+                    const p = document.createElement('p');
+                    p.classList.add('music-title');
+                    p.innerHTML= songs[i].title + ' - ' + songs[i].artist;
+                    li.appendChild(img);
+                    li.appendChild(p);
+                    listMusic.appendChild(li)
+            }
+            })
         },
         play : (currentIndex) =>{
             if(player.src === "" || currentIndex !== tmp ){
                 player.src= songs[currentIndex].src
-                title.innerHTML=songs[currentIndex].title
+                title.innerHTML=songs[currentIndex].title + '-' + songs[currentIndex].artist
+                img.setAttribute('src', songs[currentIndex].img)
             }
             var tmp = currentIndex;
             player.play();
@@ -136,10 +124,13 @@
         let totalTime = totalMinutes + ':' + totalSeconds;
         let time = currentMinutes + ':' + currentSeconds;
         resultTime.innerHTML = time + '/' + totalTime;
+        if(Math.floor(player.currentTime) === Math.floor(player.duration)){
+            app.next();
+        }
         progress.style.width = (player.currentTime / player.duration)*100 + "%";
     })
     progressBar.addEventListener('mousedown', (event) =>{
         let clickPosition = (event.clientX - event.target.offsetLeft)
         player.currentTime = (clickPosition/ event.target.offsetWidth) * player.duration
-    })
+    }) 
     window.onload = app.load

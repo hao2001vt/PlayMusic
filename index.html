@@ -11,8 +11,8 @@
     <div class="app">
         <div class="wrapper">
             <div class="main">
-                <img src="./assest//img/background.jpg" alt="">
-                <h1 class="title-song">Cô Thắm Không Về - X2X</h1>
+                <img class="img-main" src="./assest//img/background.jpg" alt="">
+                <h1 class="title-song">Chúc các bạn nghe nhạc vui vẻ - Nguyễn Hào</h1>
                 <div class="wrapper-progress">
                     <div class="progress-bar">
                         <div class="progress">
@@ -34,22 +34,6 @@
                     <i class=" close fa fa-bars"></i>
                 </div>
                 <ul class="list-music">
-                    <!-- <li class="item-music">
-                        <img src="./assest/img/background.jpg" alt="">
-                        <p class="music-title">Thiệp hồng người dưng - X2X</p>
-                    </li>
-                    <li class="item-music">
-                        <img src="./assest/img/background.jpg" alt="">
-                        <p class="music-title">Thiệp hồng người dưng - X2X</p>
-                    </li>
-                    <li class="item-music">
-                        <img src="./assest/img/background.jpg" alt="">
-                        <p class="music-title">Thiệp hồng người dưng - X2X</p>
-                    </li>
-                    <li class="item-music">
-                        <img src="./assest/img/background.jpg" alt="">
-                        <p class="music-title">Thiệp hồng người dưng - X2X</p>
-                    </li> -->
                 </ul>
             </div>
             <div class="control-menu">
@@ -58,10 +42,22 @@
             <audio class="audio" src="./assest/audio/deaf-kev-invincible.mp3"></audio>
         </div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+    <script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyArFmONBNbHZuywPmPrUL6Efq0YiOpMSpI",
+        authDomain: "vuejs-eac68.firebaseapp.com",
+        databaseURL: "https://vuejs-eac68.firebaseio.com",
+        projectId: "vuejs-eac68",
+        storageBucket: "vuejs-eac68.appspot.com",
+        messagingSenderId: "229570562521",
+        appId: "1:229570562521:web:26fae4c5982b83c60931c8",
+        measurementId: "G-PG5GZWSSH1"
+    };
+    firebase.initializeApp(firebaseConfig);
+    </script>
     <script src="./assest/js/java.js"></script>
 </body>
 </html>
